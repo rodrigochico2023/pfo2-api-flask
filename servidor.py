@@ -9,7 +9,7 @@ app = Flask(__name__)
 # =========================
 
 def crear_db():
-    conn = sqlite3.connect("usuarios.db")
+    conn = sqlite3.connect("usuarios.db", timeout=10)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -54,7 +54,7 @@ def registro():
     )
 
     try:
-        conn = sqlite3.connect("usuarios.db")
+        conn = sqlite3.connect("usuarios.db", timeout=10)
         cursor = conn.cursor()
 
         cursor.execute("""
@@ -86,7 +86,7 @@ def login():
     usuario = datos.get("usuario")
     contraseña = datos.get("contraseña")
 
-    conn = sqlite3.connect("usuarios.db")
+    conn = sqlite3.connect("usuarios.db", timeout=10)
     cursor = conn.cursor()
 
     cursor.execute("""
